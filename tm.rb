@@ -17,7 +17,7 @@ class TMInterpreter
 
 	def run
 	end
-	
+
 	private 
 
 	def parseSourceFile(file)
@@ -39,9 +39,9 @@ class TMInterpreter
 		when 'getb'
 			tmp = gets
 			@@memoryTape[position] = tmp[0].to_i
-		when 'jnz'
+		when 'jz'
 			# do something ok?
-		when 'end'
+		when 'endz'
 			# loops are to be implemented later 
 		else 
 			raise NoMethodError, "don't know how to interpret #{command}"
