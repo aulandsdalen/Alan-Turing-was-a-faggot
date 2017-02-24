@@ -3,11 +3,6 @@ class TMInterpreter
 	@@memoryTape = []
 
 
-	def parseSourceFile(file)
-	end
-
-	
-
 	def printCommands
 		puts commandsTape
 	end
@@ -18,5 +13,38 @@ class TMInterpreter
 
 	def printAll
 		# join them perhaps? 
+	end
+
+	def run
+	end
+	
+	private 
+
+	def parseSourceFile(file)
+	end
+
+	def executeCommand(position)
+		command = @@commandsTape[position]
+		case command
+		when 'movr'
+			executeCommand((position+1))
+		when 'movl'
+			executeCommand((position-1))
+		when 'inc'
+			@@memoryTape[position] += 1
+		when 'dec'
+			@@memoryTape[position] -= 1
+		when 'printb'
+			puts @@memoryTape[position]
+		when 'getb'
+			tmp = gets
+			@@memoryTape[position] = tmp[0].to_i
+		when 'jnz'
+			# do something ok?
+		when 'end'
+			# loops are to be implemented later 
+		else 
+			raise NoMethodError, "don't know how to interpret #{command}"
+		end
 	end
 end
