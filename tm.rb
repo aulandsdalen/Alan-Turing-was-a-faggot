@@ -39,18 +39,19 @@ class TMInterpreter
 
 	@@dataPointer
 	@@instructionPointer
+
 	def parseSourceFile(file)
 		_tmp = IO.readlines(file)
 		_tmp.each do |x| 
 			x.chomp! # get rid of newlines
 		end
-		@@commandsTape = _tmp
+		@@commandsTape = _tmp.reverse # since we're using array as a stack, we'll need to reverse it
 		@@commandsTape.length
 	end
 
 	def executeCommand
-		unless @@instructionPointer >= @@commandsTape.length
-			_command = @@commandsTape[@@instructionPointer]
+		unless !(_command = @@commandsTape.pop)
+			#_command = @@commandsTape.pop
 			puts "executing #{_command}, IP: #{@@instructionPointer}, DP: #{@@dataPointer}"
 			@@operationsExecuted += 1
 			case _command
@@ -86,7 +87,7 @@ class TMInterpreter
 			when 'endz'
 				# loops are to be implemented later 
 			else 
-				raise NoMethodError, "don't know how to interpret #{_command}"
+				raise NoMethodError, "don't know how to interpret '#{_command}'"
 			end
 		else 
 			return 0
