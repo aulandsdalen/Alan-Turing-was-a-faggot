@@ -1,4 +1,5 @@
 require './tm.rb'
 
-t = TMInterpreter.new("test.tm")
+t = TMInterpreter.new
+t.load("test.tm")
 t.run
