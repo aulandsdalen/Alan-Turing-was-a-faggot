@@ -10,4 +10,4 @@ getb | get one byte from input, store at the DP
 printc | print current cell as ASCII char
 getc | get one char from input and store its integer value
 jnz | jump after the matching `endz` command if data at the DP is non-zero 
-endz | if data at the DP is non-zero, then jump back to matching `jz`  
+endz | if data at the DP is non-zero, then jump back to matching `jnz`  
